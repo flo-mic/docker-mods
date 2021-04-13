@@ -9,7 +9,7 @@ fi
 
 # Download latest default sample rules
 mkdir -p /defaults/naxsi/rules
-rm /defaults/naxsi/rules/* || true
+rm -f /defaults/naxsi/rules/*
 curl -s -o /defaults/naxsi/rules/naxsi_core.rules.sample "https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules"
 
 # Download community sample rules

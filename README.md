@@ -21,18 +21,23 @@ Now you need to tell nginx where this default rules are located. Therefore open 
 http {
     ...
 
-    # Include naxsi core rules. This will not enable them for your existing proxy locations.
-    # You will need to enable naxsi on a per location base to avoid breaking changes.
+    ##
+	# Naxsi Settings
+	#
+    # Include naxsi core rules. This will only mount them to the config, they are not active by default.
+    # You will need to enable naxsi on a per location base inside your proxy server block to avoid breaking changes.
+    ##
+
     include /config/naxsi/rules/naxsi_core.rules; 
     
     ...
 }
 ...
 ```
-If you have a custom configuration you will probably neet to update this as well.
+If you have a custom configuration you will probably need to update this as well.
 
 ## Enable naxsi for a proxy location block
-In order to use naxsi for your proxy files you will need to activate it in each location block where the WAF should listen or perform actions. You can use a predefined config file for the location blocks, cusomize the predefined one for yourself if needed or create an individual one for specific locations. This default file is located here `/config/naxsi/naxsi.conf`. The latest sample version is always located in the same folder, in case of any update inside the repository you will be informmed and we will update the sample file. The location block should look like this:
+In order to use naxsi for your proxy files you will need to activate it in each location block where the WAF should listen or perform actions. You can use a predefined config file for the location blocks, cusomize the predefined one for yourself if needed or create an individual one for specific locations. This default file is located here `/config/naxsi/naxsi.conf`. The latest sample version is always located in the same folder. In case of any update inside the repository you will be informmed and we will update the sample file. The location block should look like this:
 ```
 ...
 server {
@@ -44,10 +49,10 @@ server {
         ...
 
         # Include naxsi default configuration. This will enable naxsi with all configs provided in the conf file
-        include /config/naxsi/naxsi.conf; 
+        include /config/naxsi/naxsi.conf;
 
         # Enable naxsi learning mode only for this location enable also this setting (Remove "#" in front of the next line)
-        #include /config/naxsi/rules/naxsi_core.rules; 
+        #LearningMode; 
         
         ...
         proxy_pass ...
