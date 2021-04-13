@@ -3,7 +3,7 @@ name: Build Image
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  ENDPOINT: "linuxserver/mods" #don't modify
+  ENDPOINT: "flo-mic/swag-naxsi" #don't modify
   BASEIMAGE: "swag" #replace
   MODNAME: "naxsi" #replace
 
