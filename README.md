@@ -9,7 +9,7 @@ In the container's docker arguments, set an environment variable `DOCKER_MODS=XX
 If adding multiple mods, enter them in an array separated by `|`, such as `DOCKER_MODS=XXXXX|linuxserver/mods:swag-mod2`
 
 
-# Coonfiguration of naxsi
+# Configuration of naxsi
 In order to use naxsi in your reverse proxy you need to perform the following basic installation steps. This will allow you to use some predefined rules which match most known attack vendors. Additionally it is possible to add new rules manually or with an integrated learning engine based on the nxtool.
 
 ## Add core rules to nginx.conf
@@ -32,7 +32,7 @@ http {
 If you have a custom configuration you will probably neet to update this as well.
 
 ## Enable naxsi for a proxy location block
-In order to use naxsi for your proxy files you will need to activate it in each location block where the WAF should listen or perform actions. You can use a predefined config file for the location blocks, cusomize the predefined one for yourself if needed or create a individual one for specific locations. This default file is located here `/config/naxsi/naxsi.conf`. The latest sample version is always located in the same folder, in case of any update inside the repository you will be informmed and we will update the sample file. The location block should look like this:
+In order to use naxsi for your proxy files you will need to activate it in each location block where the WAF should listen or perform actions. You can use a predefined config file for the location blocks, cusomize the predefined one for yourself if needed or create an individual one for specific locations. This default file is located here `/config/naxsi/naxsi.conf`. The latest sample version is always located in the same folder, in case of any update inside the repository you will be informmed and we will update the sample file. The location block should look like this:
 ```
 ...
 server {
@@ -70,7 +70,7 @@ maxretry = 5
 
 
 # Full documentation of naxsi
-All steps described here are based on a research on the official wiki page. If you need to customize your naxsi further, please have a look at this wiki to find more informations: https://github.com/nbs-system/naxsi/wiki
+All steps described here are based on a research on the official wiki page. If you need to customize your naxsi further, please have a look at this wiki to find more information: https://github.com/nbs-system/naxsi/wiki
 
 ## Rules and Whitelisting documentation
 
