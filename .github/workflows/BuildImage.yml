@@ -3,8 +3,7 @@ name: Build Image
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  ENDPOINT: "flo-mic/docker-mods" #don't modify
-  BRANCH: "swag-naxsi-test"
+  ENDPOINT: "linuxserver/mods" #don't modify
   BASEIMAGE: "swag" #replace
   MODNAME: "naxsi" #replace
 
