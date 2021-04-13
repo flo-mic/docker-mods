@@ -1,0 +1,23 @@
+#!/usr/bin/with-contenv bash
+
+# Compare naxsi configuration file
+if [ "$(sed -nE 's|^## Version ([0-9]{4}\/[0-9]{2}\/[0-9]{2}).*|\1|p' /config/naxsi/naxsi.conf)" != "$(sed -nE 's|^## Version ([0-9]{4}\/[0-9]{2}\/[0-9]{2}).*|\1|p' /defaults/naxsi/naxsi.conf)" ]; then
+    echo "**** The /config/naxsi/naxsi.conf has a different version date than the default that is shipped. ****"
+    echo "**** This may be due to user customization or an update to the defaults. ****"
+    echo "**** If the config is user customized, check the date version at the top and compare the content with the sample within the same folder. ****"
+    echo "**** To update it to the latest defaults shipped within the image, delete these file and restart the container. ****"
+fi
+
+# Compare active rules and inform user about possible updates
+naxsi_confs=$(ls /config/naxsi/rules/*.rules 2>/dev/null)
+for i in $naxsi_confs; do
+    if [ -f "${i}.sample" ]; then
+        cmp -s ${i}} "${i}.sample" || naxsi_confs_changed="${i}\n${naxsi_confs_changed}"
+    fi
+done
+if [ -n "$naxsi_confs_changed" ]; then
+    echo "**** The following naxsi rules have different content than the samples that are shipped. ****"
+    echo "**** This may be due to user customization or an update to the samples. ****"
+    echo "**** You should compare them to the samples in the same folder to make sure you have the latest updates. ****"
+    echo -e "${naxsi_confs_changed}"
+fi

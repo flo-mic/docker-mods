@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bash
+
+# Install required apk packages
+if [[ $(apk -e info 'util-linux') != 'util-linux' ]] || [[ $(apk -e info 'nginx-mod-http-naxsi') != 'nginx-mod-http-naxsi' ]]; then 
+  apk add --no-cache --upgrade \
+    nginx-mod-http-naxsi \
+    util-linux
+fi
+
+# Download latest default sample rules
+mkdir -p /defaults/naxsi/rules
+rm /defaults/naxsi/rules/* || true
+curl -s -o /defaults/naxsi/rules/naxsi_core.rules.sample "https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules"
+
+# Download community sample rules
+curl -s -o \
+	/tmp/naxsi.tar.gz -L \
+	"https://github.com/nbs-system/naxsi-rules/tarball/master"
+tar xf \
+	/tmp/naxsi.tar.gz -C \
+	/defaults/naxsi/rules --strip-components=1 --exclude=nbs*/*.md
+rm /tmp/naxsi.tar.gz
+
+# Make sure all rules are marked as sample
+rename .rules .rules.sample /defaults/naxsi/rules/*.rules
+find /defaults/naxsi/rules/ -type f  ! -name "*.*" -exec mv {} {}.rules.sample \;
+
+# create/update naxsi configuration folder
+mkdir -p /config/naxsi/rules
+cp /defaults/naxsi/rules/* /config/naxsi/rules
+cp /defaults/naxsi/naxsi.conf /config/naxsi/naxsi.conf.sample
+cp -n /defaults/naxsi/naxsi.conf /config/naxsi/naxsi.conf
+

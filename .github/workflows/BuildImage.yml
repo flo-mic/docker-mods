@@ -3,9 +3,10 @@ name: Build Image
 on: [push, pull_request, workflow_dispatch]
 
 env:
-  ENDPOINT: "linuxserver/mods" #don't modify
-  BASEIMAGE: "replace_baseimage" #replace
-  MODNAME: "replace_modname" #replace
+  ENDPOINT: "flomic0447/swag-naxsi" #don't modify
+  BRANCH: "swag-naxsi-test"
+  BASEIMAGE: "swag" #replace
+  MODNAME: "naxsi" #replace
 
 jobs:
   build:
