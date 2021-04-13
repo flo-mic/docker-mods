@@ -61,7 +61,13 @@ server {
 ...
 ```
 
-## Enable fail2ban integration
+## Applying changes to the web server
+When you perform changes on any of the configuration files, you will probably need to reload them. This can be done manually as explained below or you use the "**[Auto-reload](WATCHLIST="/config/nginx/custom.conf|/config/nginx/customfolder")**" mod which is already available for the **docker-swag** container. If you use the mod make sure to add the following environment variable `-e WATCHLIST="/config/naxsi"` to also include the naxsi configuration files in the monitoring of the auto-reload mod. 
+
+For manual reload of the configuration you first need to test the current config with `nginx -t`. If the result is fine you can reload nginx with `nginx -s reload` to load the changes.
+
+
+# fail2ban integration
 This mod ships a preconfigured fail2ban filter which will be copied in the fail2ban `filter.d` directory. In order to use this you will need to enable the fail2ban jail. Therefore open the file `/config/fail2ban/jail.local` and add the below content at the end of the document.
 ```
 [nginx-naxsi]
