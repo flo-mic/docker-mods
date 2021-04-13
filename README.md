@@ -4,9 +4,9 @@ This mod adds a web application firewall based on [naxsi](https://github.com/nbs
 
 
 # Installation instructions
-In the container's docker arguments, set an environment variable `DOCKER_MODS=XXXXX`
+In the container's docker arguments, set an environment variable `DOCKER_MODS=ghcr.io/flo-mic/docker-mods:swag-naxsi-test`
 
-If adding multiple mods, enter them in an array separated by `|`, such as `DOCKER_MODS=XXXXX|linuxserver/mods:swag-mod2`
+If adding multiple mods, enter them in an array separated by `|`, such as `DOCKER_MODS=ghcr.io/flo-mic/docker-mods:swag-naxsi-test|linuxserver/mods:swag-auto-reload`
 
 
 # Configuration of naxsi
