@@ -7,7 +7,7 @@ if [[ $(apk -e info 'util-linux') != 'util-linux' ]] || [[ $(apk -e info 'nginx-
     util-linux
 fi
 
-# Download latest default sample rules
+# Download latest defaults sample rules
 mkdir -p /defaults/naxsi/rules
 rm -f /defaults/naxsi/rules/*
 curl -s -o /defaults/naxsi/rules/naxsi_core.rules.sample "https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules"
@@ -30,4 +30,4 @@ mkdir -p /config/naxsi/rules
 cp /defaults/naxsi/rules/* /config/naxsi/rules
 cp /defaults/naxsi/naxsi.conf /config/naxsi/naxsi.conf.sample
 cp -n /defaults/naxsi/naxsi.conf /config/naxsi/naxsi.conf
-
+cp /defaults/www/naxsi_denied.html /config/www/

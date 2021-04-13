@@ -22,8 +22,8 @@ http {
     ...
 
     ##
-	# Naxsi Settings
-	#
+    # Naxsi Settings
+    #
     # Include naxsi core rules. This will only mount them to the config, they are not active by default.
     # You will need to enable naxsi on a per location base inside your proxy server block to avoid breaking changes.
     ##
